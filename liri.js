@@ -12,15 +12,17 @@ var axios = require("axios");
 
 
 var action = process.argv[2];
+
 switch (action) {
     case "movie-this":
         moviethis();
         break;
 
-    case "movie-this":
-        nomoviein();
-        break;
+    // case "":
+    //     nomoviein();
+    //     break;
 }
+
 function moviethis() {
     // empty variable to hold movie name
     var movieName = "";
@@ -37,6 +39,7 @@ function moviethis() {
 
     }
     console.log(movieName);
+    
 
     // the OMDB API with the movie specified
     var queryUrl = "http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&apikey=trilogy";
@@ -49,9 +52,9 @@ function moviethis() {
             // console the needed informations
             console.log('\nTitle of the movie is ' + JSON.stringify(response.data.Title) + '\nYear the movie came out-  ' + JSON.stringify(response.data.Year)
                 + '\nIMDB Rating of the movie- ' + JSON.stringify(response.data.imdbRating) + '\nRotten Tomatoes Rating of the movie- '
-                + JSON.stringify(response.data.Ratings[1]) + '\nCountry where the movie was produced- ' + JSON.stringify(response.data.Country) +
+                + JSON.stringify(response.data.Ratings[1].Value) + '\nCountry where the movie was produced- ' + JSON.stringify(response.data.Country) +
                 '\nLanguage of the movie- ' + JSON.stringify(response.data.Language) + '\nPlot of the movie- ' + JSON.stringify(response.data.Plot) + '\nActors in the movie- ' + JSON.stringify(response.data.Actors));
-
+                
 
 
         }

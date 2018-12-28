@@ -18,6 +18,10 @@ switch (action) {
     case "movie-this":
         moviethis();
         break;
+
+    case "concert-this":
+        concert();
+        break;
 }
 
 function moviethis() {
@@ -72,16 +76,22 @@ function nomoviein() {
 
 
 // `node liri.js concert-this <artist/band name here>`
+function concert() {
+    var queryUrl = "https://rest.bandsintown.com/artists/" + "Nelly" + "/events?app_id=codingbootcamp"
+    console.log(queryUrl);
+    axios.get(queryUrl).then(
+        function (response) {
+            console.log(JSON.stringify(response.data[0], null, 2));
+            console.log('\nVenue name-  ' + JSON.stringify(response.data[0].venue.name) + '\nVenue-  ' + JSON.stringify(response.data[0].venue)
+                + '\nDate of the Event- ' + JSON.stringify(response.data[0].datetime));
 
-var queryUrl="https://rest.bandsintown.com/artists/" + "Nelly"+ "/events?app_id=codingbootcamp"
-console.log(queryUrl);
-axios.get(queryUrl).then(
-    function (response) {
-        console.log(JSON.stringify(response.data, null, 2));
 
 
-    }
-);
+
+
+        }
+    );
+}
 
 
 

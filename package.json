@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/Divyagk/HW-liri-node-app#readme",
   "dependencies": {
-    "axios": "^0.18.0"
+    "axios": "^0.18.0",
+    "dotenv": "^6.2.0",
+    "spotify": "^0.3.0"
   }
 }

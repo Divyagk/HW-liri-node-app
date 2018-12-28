@@ -1,33 +1,43 @@
+//In git bash type npm install axios,npm install dotenv
+
+// require and configure dotenv.
 require("dotenv").config();
 
-var spotify = new Spotify(keys.spotify);
+// var spotify = new Spotify(keys.spotify);
 // the axios npm package
 var axios = require("axios");
 
 // `node liri.js movie-this '<movie name here>'`
-// empty variable for holding the movie name.
+// Store all of the arguments in an array
+
+// empty variable to hold movie name
 var movieName = "";
-console.log(movieName);
-for (i = 2; i < process.argv.length; i++) {
-    if (i > 2 && process.argv.length) {
-        movieName = process.argv[i] + "+" + process.argv[i];
 
+// Loop through all the words in the node argument
+for (var i = 2; i <process.argv.length; i++) {
 
-    }
-    else {
-        movieName += process.argv[i];
-    }
+  if (i > 2 && i < process.argv.length) {
+    movieName = movieName + "+" + process.argv[i];
+  }
+  else {
+    movieName += process.argv[i];
+
+  }
+
 }
-console.log(movieName);
+console.log(movieName)
 
+// the OMDB API with the movie specified
 var queryUrl = "http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&apikey=trilogy";
-console.log(queryUrl)
+console.log(queryUrl);
 
-axios.get(queryUrl).then(function(response){
+axios.get(queryUrl).then(
+  function(response) {
+    // console.log(response.data);
+    console.log(JSON.stringify(response.data, null, 2));
+  }
+);
 
-console.log(response);
-
-});
 
 
 

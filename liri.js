@@ -12,6 +12,7 @@ var axios = require("axios");
 
 // empty variable to hold movie name
 var movieName = "";
+// var action=process.argv[2];
 
 // Loop through all the words in the node argument
 for (var i = 2; i <process.argv.length; i++) {
@@ -35,7 +36,15 @@ axios.get(queryUrl).then(
   function(response) {
     // console.log(response.data);
     console.log(JSON.stringify(response.data, null, 2));
-  }
+
+    console.log('\nTitle of the movie is '+JSON.stringify(response.data.Title)+'\nYear the movie came out-  '+ JSON.stringify(response.data.Year) 
+    +'\nIMDB Rating of the movie- '+ JSON.stringify(response.data.imdbRating)+'\nRotten Tomatoes Rating of the movie- '
+    +JSON.stringify(response.data.Ratings[1])+'\nCountry where the movie was produced- '+JSON.stringify(response.data.Country)+
+    '\nLanguage of the movie- '+JSON.stringify(response.data.Language)+'\nPlot of the movie- '+JSON.stringify(response.data.Plot)+'\nActors in the movie- ' +JSON.stringify(response.data.Actors) );
+
+    
+    
+}
 );
 
 

@@ -60,17 +60,17 @@ function moviethis() {
 
         }
 
-        console.log(movieName);
+        // console.log(movieName);
 
 
         // the OMDB API with the movie specified
         var queryUrl = "http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&apikey=trilogy";
-        console.log(queryUrl);
+        // console.log(queryUrl);
 
         axios.get(queryUrl).then(
             function (response) {
-                // console.log(response.data);
-                console.log(JSON.stringify(response.data, null, 2));
+                
+                // console.log(JSON.stringify(response.data, null, 2));
                 // console the needed informations
                 console.log('\nTitle of the movie is ' + JSON.stringify(response.data.Title) + '\nYear the movie came out-  ' + JSON.stringify(response.data.Year)
                     + '\nIMDB Rating of the movie- ' + JSON.stringify(response.data.imdbRating) + '\nRotten Tomatoes Rating of the movie- '
@@ -107,12 +107,12 @@ function concert() {
 
     }
 
-    console.log(artistband);
+    // console.log(artistband);
 
 
 
     var queryUrl = "https://rest.bandsintown.com/artists/" + artistband + "/events?app_id=codingbootcamp"
-    console.log(queryUrl);
+    // console.log(queryUrl);
 
     axios.get(queryUrl).then(
         function (response) {
@@ -124,10 +124,10 @@ function concert() {
             else {
 
                 for (i = 0; i < response.data.length; i++) {
-                    console.log('\nVenue name-  ' + JSON.stringify(response.data[i].venue.name) + '\nVenue-  ' + JSON.stringify(response.data[i].venue)
+                    console.log('\nVenue name-  ' + JSON.stringify(response.data[i].venue.name) + '\nVenue(country,region,city)- ' + JSON.stringify(response.data[i].venue.country)+"," +JSON.stringify(response.data[i].venue.region) + "," +JSON.stringify(response.data[i].venue.city )
                         + '\nDate of the Event- ' + moment(response.data[i].datetime).format("MM/DD/YYYY"));
 
-
+// console.log(JSON.stringify(response.data[i].venue.country)+"," +JSON.stringify(response.data[i].venue.region) + "," +JSON.stringify(response.data[i].venue.city ))
                 }
             }
         })

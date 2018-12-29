@@ -4,6 +4,7 @@
 require("dotenv").config();
 
 var Spotify = require('node-spotify-api');
+// Using the require keyword lets us access all of the exports in our keys.js file
 var keys = require("./keys.js");
 // var spotify = new Spotify(keys.spotify);
 
@@ -17,9 +18,8 @@ moment().format();
 var axios = require("axios");
 
 // `node liri.js movie-this '<movie name here>'`
+
 // Store all of the arguments in an array
-
-
 var action = process.argv[2];
 
 switch (action) {
@@ -93,9 +93,12 @@ function nomoviein() {
 
 
 // `node liri.js concert-this <artist/band name here>`
+
 function concert() {
+
     //empty variable to hold artist name or band name.
     var artistband = "";
+
     for (var i = 3; i < process.argv.length; i++) {
 
         if (i > 3 && i < process.argv.length) {
@@ -109,8 +112,6 @@ function concert() {
     }
 
     // console.log(artistband);
-
-
 
     var queryUrl = "https://rest.bandsintown.com/artists/" + artistband + "/events?app_id=codingbootcamp"
     // console.log(queryUrl);
@@ -144,12 +145,14 @@ function concert() {
 
 
 // `node liri.js spotify-this-song '<song name here>'`
-function spotify() {
 
+function spotify() {
 
     var spotify = new Spotify(keys.spotify);
 
-    var songname = "";
+    // empty variable to hold songname.
+    var songname = " ";
+
     if (process.argv.length < 4) {
         nosongnamein();
     }
@@ -170,7 +173,8 @@ function spotify() {
 
         }
 
-        console.log(songname);
+        // console.log(songname);
+
         spotify
             .search({ type: 'track', query: songname, limit: 20 })
             .then(function (response) {
@@ -197,16 +201,8 @@ function spotify() {
 
 function nosongnamein() {
 
-    console.log("The Sign by Ace of Base");
+    console.log('\nThe Sign by Ace of Base.' + '\nPreview URL- ' + 'https://p.scdn.co/mp3-preview/4c463359f67dd3546db7294d236dd0ae991882ff?cid=bbb414111db841ebbc9a7005416b36f8 ');
 
 }
+
 // `node liri.js do-what-it-says`
-// Artist(s)
-
-// * The song's name
-
-// * A preview link of the song from Spotify
-
-// * The album that the song is from
-
-// * If no song is provided then your program will default to "The Sign" by Ace of Base.

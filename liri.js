@@ -175,13 +175,8 @@ function spotify() {
             .search({ type: 'track', query: songname, limit: 20 })
             .then(function (response) {
                 for (i = 0; i < response.tracks.items.length; i++) {
-                    console.log('\nArtists-  ' + JSON.stringify(response.tracks.items[i].artists.name) + '\nSongs name - ' + JSON.stringify(response.tracks.items[i].name)+ '\nPreview URL- ' +JSON.stringify(response.tracks.items[i].preview_url) + '\nAlbum name- '+JSON.stringify(response.tracks.items[i].album.name) );
-
-                    // console.log(JSON.stringify(response.data[i].venue.country)+"," +JSON.stringify(response.data[i].venue.region) + "," +JSON.stringify(response.data[i].venue.city ))
-
-
-                    // console.log(JSON.stringify(response, null, 2));
-                    // console.log(JSON.stringify(response.tracks.items[0].artists[0].name, null, 2));
+                    console.log('\nArtists-  ' + JSON.stringify(response.tracks.items[i].artists[0].name) + '\nSongs name - ' + JSON.stringify(response.tracks.items[i].name) + '\nPreview URL- ' + JSON.stringify(response.tracks.items[i].preview_url) + '\nAlbum name- ' + JSON.stringify(response.tracks.items[i].album.name));
+                    // console.log(JSON.stringify(response.tracks.items[i].artists[0].name, null, 2));
                     // console.log(JSON.stringify(response.tracks.items[0].name, null, 2));
                     // console.log(JSON.stringify(response.tracks.items[0].preview_url, null, 2));
                     // console.log(JSON.stringify(response.tracks.items[0].album.name, null, 2));

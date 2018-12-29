@@ -13,7 +13,7 @@ var fs = require("fs");
 
 // moment
 var moment = require('moment');
-moment().format();
+// moment().format();
 // the axios npm package
 var axios = require("axios");
 
@@ -35,9 +35,10 @@ switch (action) {
         spotify();
         break;
 
-    // case "do-what-it-says":
-    //     ();
-    //     break;
+    case "do-what-it-says":
+        dowhatitsays();
+        break;
+
 
 }
 
@@ -206,3 +207,54 @@ function nosongnamein() {
 }
 
 // `node liri.js do-what-it-says`
+function dowhatitsays() {
+    // var userin=" "
+    // This block of code will read from the "random.txt" file.
+    // It's important to include the "utf8" parameter or the code will provide stream data (garbage)
+    // The code will store the contents of the reading inside the variable "data"
+    fs.readFile("random.txt", "utf8", function (error, data) {
+
+        // If the code experiences any errors it will log the error to the console.
+        if (error) {
+            return console.log(error);
+        }
+        // We will then print the contents of data
+        console.log(data);
+        var userin = " "
+        for (var i = 2; i < process.argv.length; i++) {
+            if (i > 2 && i < process.argv.length) {
+                userin = userin + " " + process.argv[i];
+            }
+            else {
+                userin += process.argv[i];
+
+            }
+
+
+
+        }
+        console.log(userin);
+
+        if (userin === "do-what-it-says I Want it That Way") {
+
+            spotify();
+        }
+        else if (userin === "do-what-it-says I like movies") {
+
+            moviethis();
+        }
+        else if (userin === "do-what-it-says I want to go") {
+            concert();
+        }
+
+
+
+        // Then split it by commas (to make it more readable)
+        // var dataArr = data.split(",");
+
+        // We will then re-display the content as an array for later use.
+        // console.log(dataArr);
+
+    });
+
+}

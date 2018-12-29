@@ -152,7 +152,15 @@ function spotify() {
     spotify
       .search({ type: 'track', query: 'All the Small Things' })
       .then(function(response) {
-        console.log(response);
+        // console.log(response);
+        // console.log(JSON.stringify(response.tracks.items[0], null, 2));
+        // console.log(JSON.stringify(response.tracks.items[0].artists, null, 2));
+        // console.log(JSON.stringify(response.tracks.items[0].name, null, 2));
+        // console.log(JSON.stringify(response.tracks.items[0]. preview_url, null, 2));
+        console.log(JSON.stringify(response.tracks.items[0]. album.name, null, 2));
+       
+
+
       })
       .catch(function(err) {
         console.log(err);
@@ -174,7 +182,7 @@ function spotify() {
 
 }
 // `node liri.js do-what-it-says`
-Artist(s)
+// Artist(s)
 
 // * The song's name
 

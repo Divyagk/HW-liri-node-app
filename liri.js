@@ -6,6 +6,9 @@ require("dotenv").config();
 // var keys = require("./keys.js");
 // var spotify = new Spotify(keys.spotify);
 
+// fs is a core Node package for reading and writing files
+var fs = require("fs");
+
 // moment
 var moment = require('moment');
 moment().format();
@@ -26,6 +29,15 @@ switch (action) {
     case "concert-this":
         concert();
         break;
+
+        case "spotify-this-song":
+        spotify();
+        break;
+
+        case "do-what-it-says":
+        ();
+        break;
+        
 }
 
 function moviethis() {
@@ -120,9 +132,8 @@ function concert() {
 }
 
 
+// `node liri.js spotify-this-song '<song name here>'`
+function spotify(){
 
-// * Name of the venue
-
-//      * Venue location
-
-//      * Date of the Event (use moment to format this as "MM/DD/YYYY")
+} 
+// `node liri.js do-what-it-says`

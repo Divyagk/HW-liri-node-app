@@ -143,7 +143,7 @@ function concert() {
 
 
 // `node liri.js spotify-this-song '<song name here>'`
-// function spotify() {
+function spotify() {
 
-// }
+}
 // `node liri.js do-what-it-says`

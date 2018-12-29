@@ -78,10 +78,24 @@ function nomoviein() {
 // `node liri.js concert-this <artist/band name here>`
 function concert() {
     //empty variable to hold artist name or band name.
-    var artistbandname=process.argv[3];
-    
-    
-    var queryUrl = "https://rest.bandsintown.com/artists/" + artistbandname + "/events?app_id=codingbootcamp"
+    var artistband = "";
+    for (var i = 3; i < process.argv.length; i++) {
+
+        if (i > 3 && i < process.argv.length) {
+            artistband = artistband + "+" + process.argv[i];
+        }
+        else {
+            artistband += process.argv[i];
+
+        }
+
+    }
+
+    console.log(artistband);
+
+   
+
+    var queryUrl = "https://rest.bandsintown.com/artists/" + artistband + "/events?app_id=codingbootcamp"
     console.log(queryUrl);
 
     axios.get(queryUrl).then(

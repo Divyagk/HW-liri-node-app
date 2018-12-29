@@ -3,8 +3,8 @@
 // require and configure dotenv.
 require("dotenv").config();
 
-// var keys = require("./keys.js");
-// var spotify = new Spotify(keys.spotify);
+var keys = require("./keys.js");
+var spotify = new Spotify(keys.spotify);
 
 // fs is a core Node package for reading and writing files
 var fs = require("fs");
@@ -144,6 +144,14 @@ function concert() {
 
 // `node liri.js spotify-this-song '<song name here>'`
 function spotify() {
+    app.get('/login', function(req, res) {
+        var scopes = 'user-read-private user-read-email';
+        res.redirect('https://accounts.spotify.com/authorize' +
+          '?response_type=code' +
+          '&client_id=' + bbb414111db841ebbc9a7005416b36f8 +
+          (scopes ? '&scope=' + encodeURIComponent(scopes) : '') +
+          '&redirect_uri=' + encodeURIComponent(redirect_uri));
+        });
 
 }
 // `node liri.js do-what-it-says`

@@ -70,7 +70,7 @@ function moviethis() {
 
         axios.get(queryUrl).then(
             function (response) {
-                
+
                 // console.log(JSON.stringify(response.data, null, 2));
                 // console the needed informations
                 console.log('\nTitle of the movie is ' + JSON.stringify(response.data.Title) + '\nYear the movie came out-  ' + JSON.stringify(response.data.Year)
@@ -125,10 +125,10 @@ function concert() {
             else {
 
                 for (i = 0; i < response.data.length; i++) {
-                    console.log('\nVenue name-  ' + JSON.stringify(response.data[i].venue.name) + '\nVenue(country,region,city)- ' + JSON.stringify(response.data[i].venue.country)+"," +JSON.stringify(response.data[i].venue.region) + "," +JSON.stringify(response.data[i].venue.city )
+                    console.log('\nVenue name-  ' + JSON.stringify(response.data[i].venue.name) + '\nVenue(country,region,city)- ' + JSON.stringify(response.data[i].venue.country) + "," + JSON.stringify(response.data[i].venue.region) + "," + JSON.stringify(response.data[i].venue.city)
                         + '\nDate of the Event- ' + moment(response.data[i].datetime).format("MM/DD/YYYY"));
 
-// console.log(JSON.stringify(response.data[i].venue.country)+"," +JSON.stringify(response.data[i].venue.region) + "," +JSON.stringify(response.data[i].venue.city ))
+                    // console.log(JSON.stringify(response.data[i].venue.country)+"," +JSON.stringify(response.data[i].venue.region) + "," +JSON.stringify(response.data[i].venue.city ))
                 }
             }
         })
@@ -145,41 +145,71 @@ function concert() {
 
 // `node liri.js spotify-this-song '<song name here>'`
 function spotify() {
-    
- 
+
+
     var spotify = new Spotify(keys.spotify);
 
-    spotify
-      .search({ type: 'track', query: 'All the Small Things' })
-      .then(function(response) {
-        // console.log(response);
-        // console.log(JSON.stringify(response.tracks.items[0], null, 2));
-        // console.log(JSON.stringify(response.tracks.items[0].artists, null, 2));
-        // console.log(JSON.stringify(response.tracks.items[0].name, null, 2));
-        // console.log(JSON.stringify(response.tracks.items[0]. preview_url, null, 2));
-        console.log(JSON.stringify(response.tracks.items[0]. album.name, null, 2));
-       
+    var songname = "";
+    if (process.argv.length < 4) {
+        nosongnamein();
+    }
+
+    else {
 
 
-      })
-      .catch(function(err) {
-        console.log(err);
-      });
-// request
- 
+        // Loop through all the words in the node argument
+        for (var i = 3; i < process.argv.length; i++) {
 
- 
-// spotify
-//   .request('https://api.spotify.com/v1/tracks/7yCPwWs66K8Ba5lFuU2bcx')
-//   .then(function(data) {
-//     console.log(data); 
-//   })
-//   .catch(function(err) {
-//     console.error('Error occurred: ' + err); 
-//   });
+            if (i > 3 && i < process.argv.length) {
+                songname = songname + "+" + process.argv[i];
+            }
+            else {
+                songname += process.argv[i];
+
+            }
+
+        }
+
+        console.log(songname);
+        spotify
+            .search({ type: 'track', query: songname })
+            .then(function (response) {
+                
+                // console.log(JSON.stringify(response.tracks.items[0], null, 2));
+                console.log(JSON.stringify(response.tracks.items[0].artists[0].name, null, 2));
+                console.log(JSON.stringify(response.tracks.items[0].name, null, 2));
+                console.log(JSON.stringify(response.tracks.items[0].preview_url, null, 2));
+                console.log(JSON.stringify(response.tracks.items[0].album.name, null, 2));
 
 
 
+            })
+            .catch(function (err) {
+                console.log(err);
+            });
+    }
+    // request
+
+
+
+    // spotify
+    //   .request('https://api.spotify.com/v1/tracks/7yCPwWs66K8Ba5lFuU2bcx')
+    //   .then(function(data) {
+    //     console.log(data); 
+    //   })
+    //   .catch(function(err) {
+    //     console.error('Error occurred: ' + err); 
+    //   });
+
+
+
+}
+
+
+function nosongnamein() {
+
+    console.log("The Sign by Ace of Base");
+    
 }
 // `node liri.js do-what-it-says`
 // Artist(s)

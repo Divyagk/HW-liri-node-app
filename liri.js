@@ -134,7 +134,7 @@ function concert() {
             }
         })
         .catch(function (error) {
-            console.log(error);
+            console.log(error + '\n Please provide a artist name');
 
         })
 

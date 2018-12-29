@@ -30,14 +30,14 @@ switch (action) {
         concert();
         break;
 
-        case "spotify-this-song":
+    case "spotify-this-song":
         spotify();
         break;
 
-        case "do-what-it-says":
-        ();
-        break;
-        
+    // case "do-what-it-says":
+    //     ();
+    //     break;
+
 }
 
 function moviethis() {
@@ -116,24 +116,34 @@ function concert() {
 
     axios.get(queryUrl).then(
         function (response) {
-            console.log(JSON.stringify(response.data, null, 2));
-            for (i = 0; i < response.data.length; i++) {
-                console.log('\nVenue name-  ' + JSON.stringify(response.data[i].venue.name) + '\nVenue-  ' + JSON.stringify(response.data[i].venue)
-                    + '\nDate of the Event- ' + moment(response.data[i].datetime).format("MM/DD/YYYY"));
-                    // console.log((moment(response.data[i].datetime)).format("MM/DD/YYYY"));
-                    
+            // console.log(JSON.stringify(response.data, null, 2));
+            if (JSON.stringify(response.data) === "[]") {
+                console.log("sorry!,not found");
+
             }
+            else {
+
+                for (i = 0; i < response.data.length; i++) {
+                    console.log('\nVenue name-  ' + JSON.stringify(response.data[i].venue.name) + '\nVenue-  ' + JSON.stringify(response.data[i].venue)
+                        + '\nDate of the Event- ' + moment(response.data[i].datetime).format("MM/DD/YYYY"));
+
+
+                }
+            }
+        })
+        .catch(function (error) {
+            console.log(error);
+
+        })
 
 
 
 
-        }
-    );
 }
 
 
 // `node liri.js spotify-this-song '<song name here>'`
-function spotify(){
+// function spotify() {
 
-} 
+// }
 // `node liri.js do-what-it-says`

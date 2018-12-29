@@ -6,6 +6,9 @@ require("dotenv").config();
 // var keys = require("./keys.js");
 // var spotify = new Spotify(keys.spotify);
 
+// moment
+var moment = require('moment');
+moment().format();
 // the axios npm package
 var axios = require("axios");
 
@@ -94,7 +97,7 @@ function concert() {
 
     console.log(artistband);
 
-   
+
 
     var queryUrl = "https://rest.bandsintown.com/artists/" + artistband + "/events?app_id=codingbootcamp"
     console.log(queryUrl);
@@ -102,9 +105,12 @@ function concert() {
     axios.get(queryUrl).then(
         function (response) {
             console.log(JSON.stringify(response.data, null, 2));
-            console.log('\nVenue name-  ' + JSON.stringify(response.data[0].venue.name) + '\nVenue-  ' + JSON.stringify(response.data[0].venue)
-                + '\nDate of the Event- ' + JSON.stringify(response.data[0].datetime));
-
+            for (i = 0; i < response.data.length; i++) {
+                console.log('\nVenue name-  ' + JSON.stringify(response.data[i].venue.name) + '\nVenue-  ' + JSON.stringify(response.data[i].venue)
+                    + '\nDate of the Event- ' + moment(response.data[i].datetime).format("MM/DD/YYYY"));
+                    // console.log((moment(response.data[i].datetime)).format("MM/DD/YYYY"));
+                    
+            }
 
 
 

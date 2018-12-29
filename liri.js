@@ -28,11 +28,13 @@ switch (action) {
         break;
 
     case "concert-this":
-        concert();
+    var event="null";
+        concert(event);
         break;
 
     case "spotify-this-song":
-        spotify();
+    var song="null";
+        spotify(song);
         break;
 
     case "do-what-it-says":
@@ -44,7 +46,7 @@ switch (action) {
 
 function moviethis() {
     // empty variable to hold movie name
-    var movieName = "";
+    var movieName = " ";
     if (process.argv.length < 4) {
         nomoviein();
     }
@@ -95,7 +97,7 @@ function nomoviein() {
 
 // `node liri.js concert-this <artist/band name here>`
 
-function concert() {
+function concert(event) {
 
     //empty variable to hold artist name or band name.
     var artistband = "";
@@ -147,18 +149,18 @@ function concert() {
 
 // `node liri.js spotify-this-song '<song name here>'`
 
-function spotify() {
+function spotify(song) {
 
     var spotify = new Spotify(keys.spotify);
 
     // empty variable to hold songname.
     var songname = " ";
 
-    if (process.argv.length < 4) {
+    if (process.argv.length === 3 && process.argv[2] != "do-what-it-says") {
         nosongnamein();
     }
 
-    else {
+    else if (process.argv.length > 3) {
 
 
         // Loop through all the words in the node argument
@@ -174,25 +176,31 @@ function spotify() {
 
         }
 
+
         // console.log(songname);
 
-        spotify
-            .search({ type: 'track', query: songname, limit: 20 })
-            .then(function (response) {
-                for (i = 0; i < response.tracks.items.length; i++) {
-                    console.log('\nArtists-  ' + JSON.stringify(response.tracks.items[i].artists[0].name) + '\nSongs name - ' + JSON.stringify(response.tracks.items[i].name) + '\nPreview URL- ' + JSON.stringify(response.tracks.items[i].preview_url) + '\nAlbum name- ' + JSON.stringify(response.tracks.items[i].album.name));
-                    // console.log(JSON.stringify(response.tracks.items[i].artists[0].name, null, 2));
-                    // console.log(JSON.stringify(response.tracks.items[0].name, null, 2));
-                    // console.log(JSON.stringify(response.tracks.items[0].preview_url, null, 2));
-                    // console.log(JSON.stringify(response.tracks.items[0].album.name, null, 2));
 
-                }
-
-            })
-            .catch(function (err) {
-                console.log(err);
-            });
     }
+    else if (process.argv.length === 3 && process.argv[2] === "do-what-it-says") {
+
+        var songname = song;
+    }
+    spotify
+        .search({ type: 'track', query: songname, limit: 20 })
+        .then(function (response) {
+            for (i = 0; i < response.tracks.items.length; i++) {
+                console.log('\nArtists-  ' + JSON.stringify(response.tracks.items[i].artists[0].name) + '\nSongs name - ' + JSON.stringify(response.tracks.items[i].name) + '\nPreview URL- ' + JSON.stringify(response.tracks.items[i].preview_url) + '\nAlbum name- ' + JSON.stringify(response.tracks.items[i].album.name));
+                // console.log(JSON.stringify(response.tracks.items[i].artists[0].name, null, 2));
+                // console.log(JSON.stringify(response.tracks.items[0].name, null, 2));
+                // console.log(JSON.stringify(response.tracks.items[0].preview_url, null, 2));
+                // console.log(JSON.stringify(response.tracks.items[0].album.name, null, 2));
+
+            }
+
+        })
+        .catch(function (err) {
+            console.log(err);
+        });
 
 
 
@@ -220,40 +228,22 @@ function dowhatitsays() {
         }
         // We will then print the contents of data
         console.log(data);
-        var userin = " "
-        for (var i = 2; i < process.argv.length; i++) {
-            if (i > 2 && i < process.argv.length) {
-                userin = userin + " " + process.argv[i];
-            }
-            else {
-                userin += process.argv[i];
-
-            }
-
-
-
-        }
-        console.log(userin);
-
-        if (userin === "do-what-it-says I Want it That Way") {
-
-            spotify();
-        }
-        else if (userin === "do-what-it-says I like movies") {
-
-            moviethis();
-        }
-        else if (userin === "do-what-it-says I want to go") {
-            concert();
-        }
-
-
 
         // Then split it by commas (to make it more readable)
-        // var dataArr = data.split(",");
+        var dataArr = data.split(",");
 
         // We will then re-display the content as an array for later use.
-        // console.log(dataArr);
+        console.log(dataArr);
+        if (dataArr[0] === 'spotify-this-song') {
+            var song = dataArr[1];
+            spotify(song);
+        }
+        else if(dataArr[0] === 'concert-this'){
+            var event=dataArr[1];
+            concert(event);
+        }
+
+
 
     });
 

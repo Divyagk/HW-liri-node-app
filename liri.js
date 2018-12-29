@@ -1,10 +1,11 @@
-//In git bash type npm install axios,npm install dotenv
+//In git bash type npm install axios,npm install dotenv,npm install moment
 
 // require and configure dotenv.
 require("dotenv").config();
 
 // var keys = require("./keys.js");
 // var spotify = new Spotify(keys.spotify);
+
 // the axios npm package
 var axios = require("axios");
 

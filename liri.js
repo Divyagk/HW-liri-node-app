@@ -161,7 +161,7 @@ function spotify() {
         for (var i = 3; i < process.argv.length; i++) {
 
             if (i > 3 && i < process.argv.length) {
-                songname = songname + "+" + process.argv[i];
+                songname = songname + " " + process.argv[i];
             }
             else {
                 songname += process.argv[i];
@@ -172,34 +172,28 @@ function spotify() {
 
         console.log(songname);
         spotify
-            .search({ type: 'track', query: songname })
+            .search({ type: 'track', query: songname, limit: 20 })
             .then(function (response) {
-                
-                // console.log(JSON.stringify(response.tracks.items[0], null, 2));
-                console.log(JSON.stringify(response.tracks.items[0].artists[0].name, null, 2));
-                console.log(JSON.stringify(response.tracks.items[0].name, null, 2));
-                console.log(JSON.stringify(response.tracks.items[0].preview_url, null, 2));
-                console.log(JSON.stringify(response.tracks.items[0].album.name, null, 2));
+                for (i = 0; i < response.tracks.items.length; i++) {
+                    console.log('\nArtists-  ' + JSON.stringify(response.tracks.items[i].artists.name) + '\nSongs name - ' + JSON.stringify(response.tracks.items[i].name)+ '\nPreview URL- ' +JSON.stringify(response.tracks.items[i].preview_url) + '\nAlbum name- '+JSON.stringify(response.tracks.items[i].album.name) );
+
+                    // console.log(JSON.stringify(response.data[i].venue.country)+"," +JSON.stringify(response.data[i].venue.region) + "," +JSON.stringify(response.data[i].venue.city ))
 
 
+                    // console.log(JSON.stringify(response, null, 2));
+                    // console.log(JSON.stringify(response.tracks.items[0].artists[0].name, null, 2));
+                    // console.log(JSON.stringify(response.tracks.items[0].name, null, 2));
+                    // console.log(JSON.stringify(response.tracks.items[0].preview_url, null, 2));
+                    // console.log(JSON.stringify(response.tracks.items[0].album.name, null, 2));
+
+                }
 
             })
             .catch(function (err) {
                 console.log(err);
             });
     }
-    // request
 
-
-
-    // spotify
-    //   .request('https://api.spotify.com/v1/tracks/7yCPwWs66K8Ba5lFuU2bcx')
-    //   .then(function(data) {
-    //     console.log(data); 
-    //   })
-    //   .catch(function(err) {
-    //     console.error('Error occurred: ' + err); 
-    //   });
 
 
 
@@ -209,7 +203,7 @@ function spotify() {
 function nosongnamein() {
 
     console.log("The Sign by Ace of Base");
-    
+
 }
 // `node liri.js do-what-it-says`
 // Artist(s)

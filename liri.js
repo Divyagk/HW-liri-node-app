@@ -5,7 +5,7 @@ require("dotenv").config();
 
 var Spotify = require('node-spotify-api');
 var keys = require("./keys.js");
-var spotify = new Spotify(keys.spotify);
+// var spotify = new Spotify(keys.spotify);
 
 // fs is a core Node package for reading and writing files
 var fs = require("fs");
@@ -145,14 +145,41 @@ function concert() {
 
 // `node liri.js spotify-this-song '<song name here>'`
 function spotify() {
-    // app.get('/login', function(req, res) {
-    //     var scopes = 'user-read-private user-read-email';
-    //     res.redirect('https://accounts.spotify.com/authorize' +
-    //       '?response_type=code' +
-    //       '&client_id=' + bbb414111db841ebbc9a7005416b36f8 +
-    //       (scopes ? '&scope=' + encodeURIComponent(scopes) : '') +
-    //       '&redirect_uri=' + encodeURIComponent(redirect_uri));
-    //     });
+    
+ 
+    var spotify = new Spotify(keys.spotify);
+
+    spotify
+      .search({ type: 'track', query: 'All the Small Things' })
+      .then(function(response) {
+        console.log(response);
+      })
+      .catch(function(err) {
+        console.log(err);
+      });
+// request
+ 
+
+ 
+// spotify
+//   .request('https://api.spotify.com/v1/tracks/7yCPwWs66K8Ba5lFuU2bcx')
+//   .then(function(data) {
+//     console.log(data); 
+//   })
+//   .catch(function(err) {
+//     console.error('Error occurred: ' + err); 
+//   });
+
+
 
 }
 // `node liri.js do-what-it-says`
+Artist(s)
+
+// * The song's name
+
+// * A preview link of the song from Spotify
+
+// * The album that the song is from
+
+// * If no song is provided then your program will default to "The Sign" by Ace of Base.

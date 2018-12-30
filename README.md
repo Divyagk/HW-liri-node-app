@@ -20,7 +20,7 @@ Spotify API (https://www.npmjs.com/package/node-spotify-api)
 
 OMDb API (http://www.omdbapi.com)
 
-<h3>packages Used:</h3>
+<h3>Dependencies:</h3>
 
 npm install axios
 

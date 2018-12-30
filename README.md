@@ -29,3 +29,5 @@ npm install dotenv
 npm install moment
   
 npm install --save node-spotify-api
+
+/screenshot of output/Capture.png

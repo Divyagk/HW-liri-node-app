@@ -32,3 +32,4 @@ npm install --save node-spotify-api
 
 
 ![Spotify](https://github.com/Divyagk/HW-liri-node-app/blob/master/images/picture.PNG)
+![Spotify](./images/picture1.PNG)

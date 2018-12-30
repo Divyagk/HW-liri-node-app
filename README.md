@@ -30,11 +30,16 @@ npm install moment
   
 npm install --save node-spotify-api
 
+<h3>Working example:</h3>
 
+<h6>Spotify</h6>
 ![Spotify](./images/picture.PNG)
 
+<h6>Reading input from text file</h6>
 ![Spotify](./images/picture1.PNG)
 
+<h3>Concert</h3>
 ![Spotify](./images/picture2.PNG)
 
+<h3>OMDB</h3>
 ![Spotify](./images/picture3.PNG)

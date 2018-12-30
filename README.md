@@ -30,4 +30,5 @@ npm install moment
   
 npm install --save node-spotify-api
 
-![Spotifiy](images/picture.png)
+
+![Spotify](https://github.com/Divyagk/HW-liri-node-app/blob/master/images/picture.PNG)

@@ -129,7 +129,7 @@ function concert(event) {
         var artistband = event;
     }
 
-    console.log(artistband);
+    // console.log(artistband);
 
     var queryUrl = "https://rest.bandsintown.com/artists/"+ artistband +"/events?app_id=codingbootcamp"
     // console.log(queryUrl);

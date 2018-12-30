@@ -30,4 +30,3 @@ npm install moment
   
 npm install --save node-spotify-api
 
-<img src="/Homeworks/HW-liri-node-app/screenshot of output/capture5.png">

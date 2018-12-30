@@ -32,18 +32,18 @@ npm install --save node-spotify-api
 
 <h3>Working example:</h3>
 
-<h6>Spotify</h6>
+<h5>Spotify</h5>
 
 ![Spotify](./images/picture.PNG)
 
-<h6>Reading input from text file</h6>
+<h5>Reading input from text file</h5>
 
 ![Spotify](./images/picture1.PNG)
 
-<h6>Concert</h6>
+<h5>Concert</h5>
 
 ![Spotify](./images/picture2.PNG)
 
-<h6>OMDB</h6>
+<h5>OMDB</h5>
 
 ![Spotify](./images/picture3.PNG)

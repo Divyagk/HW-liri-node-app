@@ -30,4 +30,4 @@ npm install moment
   
 npm install --save node-spotify-api
 
-![Spotifiy](/images/picture.png)
+![Spotifiy](images/picture.png)

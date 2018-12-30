@@ -24,16 +24,17 @@ var action = process.argv[2];
 
 switch (action) {
     case "movie-this":
-        moviethis();
+        var movie = " "
+        moviethis(movie);
         break;
 
     case "concert-this":
-    var event="null";
+        var event = " ";
         concert(event);
         break;
 
     case "spotify-this-song":
-    var song="null";
+        var song = " ";
         spotify(song);
         break;
 
@@ -44,13 +45,14 @@ switch (action) {
 
 }
 
-function moviethis() {
+function moviethis(movie) {
     // empty variable to hold movie name
-    var movieName = " ";
-    if (process.argv.length < 4) {
+    var movieName = "";
+
+    if (process.argv.length === 3 && process.argv[2] != "do-what-it-says") {
         nomoviein();
     }
-    else {
+    else if (process.argv.length > 3) {
         // Loop through all the words in the node argument
         for (var i = 3; i < process.argv.length; i++) {
 
@@ -67,25 +69,31 @@ function moviethis() {
         // console.log(movieName);
 
 
-        // the OMDB API with the movie specified
-        var queryUrl = "http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&apikey=trilogy";
-        // console.log(queryUrl);
 
-        axios.get(queryUrl).then(
-            function (response) {
-
-                // console.log(JSON.stringify(response.data, null, 2));
-                // console the needed informations
-                console.log('\nTitle of the movie is ' + JSON.stringify(response.data.Title) + '\nYear the movie came out-  ' + JSON.stringify(response.data.Year)
-                    + '\nIMDB Rating of the movie- ' + JSON.stringify(response.data.imdbRating) + '\nRotten Tomatoes Rating of the movie- '
-                    + JSON.stringify(response.data.Ratings[1].Value) + '\nCountry where the movie was produced- ' + JSON.stringify(response.data.Country) +
-                    '\nLanguage of the movie- ' + JSON.stringify(response.data.Language) + '\nPlot of the movie- ' + JSON.stringify(response.data.Plot) + '\nActors in the movie- ' + JSON.stringify(response.data.Actors));
-
-
-
-            }
-        );
     }
+    else if (process.argv.length === 3 && process.argv[2] === "do-what-it-says") {
+
+        var movieName = movie;
+    }
+
+    // the OMDB API with the movie specified
+    var queryUrl = "http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&apikey=trilogy";
+    // console.log(queryUrl);
+
+    axios.get(queryUrl).then(
+        function (response) {
+
+            // console.log(JSON.stringify(response.data, null, 2));
+            // console the needed informations
+            console.log('\nTitle of the movie is ' + JSON.stringify(response.data.Title) + '\nYear the movie came out-  ' + JSON.stringify(response.data.Year)
+                + '\nIMDB Rating of the movie- ' + JSON.stringify(response.data.imdbRating) + '\nRotten Tomatoes Rating of the movie- '
+                + JSON.stringify(response.data.Ratings[1].Value) + '\nCountry where the movie was produced- ' + JSON.stringify(response.data.Country) +
+                '\nLanguage of the movie- ' + JSON.stringify(response.data.Language) + '\nPlot of the movie- ' + JSON.stringify(response.data.Plot) + '\nActors in the movie- ' + JSON.stringify(response.data.Actors));
+
+
+
+        }
+    );
 }
 
 function nomoviein() {
@@ -101,22 +109,28 @@ function concert(event) {
 
     //empty variable to hold artist name or band name.
     var artistband = "";
+    if (process.argv.length > 3) {
+        for (var i = 3; i < process.argv.length; i++) {
 
-    for (var i = 3; i < process.argv.length; i++) {
+            if (i > 3 && i < process.argv.length) {
+                artistband = artistband + "+" + process.argv[i];
+            }
+            else {
+                artistband += process.argv[i];
 
-        if (i > 3 && i < process.argv.length) {
-            artistband = artistband + "+" + process.argv[i];
+            }
+
+
         }
-        else {
-            artistband += process.argv[i];
+    }
+    else if (process.argv.length === 3 && process.argv[2] === "do-what-it-says") {
 
-        }
-
+        var artistband = event;
     }
 
-    // console.log(artistband);
+    console.log(artistband);
 
-    var queryUrl = "https://rest.bandsintown.com/artists/" + artistband + "/events?app_id=codingbootcamp"
+    var queryUrl = "https://rest.bandsintown.com/artists/"+ artistband +"/events?app_id=codingbootcamp"
     // console.log(queryUrl);
 
     axios.get(queryUrl).then(
@@ -140,6 +154,7 @@ function concert(event) {
             console.log(error + '\n Please provide a artist name');
 
         })
+    
 
 
 
@@ -154,7 +169,7 @@ function spotify(song) {
     var spotify = new Spotify(keys.spotify);
 
     // empty variable to hold songname.
-    var songname = " ";
+    var songname = "";
 
     if (process.argv.length === 3 && process.argv[2] != "do-what-it-says") {
         nosongnamein();
@@ -238,9 +253,16 @@ function dowhatitsays() {
             var song = dataArr[1];
             spotify(song);
         }
-        else if(dataArr[0] === 'concert-this'){
-            var event=dataArr[1];
+        else if (dataArr[0] === 'concert-this') {
+            var event = dataArr[1].replace(/['"]+/g, '');
+        
+        
             concert(event);
+        }
+
+        else if (dataArr[0] === 'movie-this') {
+            var movie = dataArr[1];
+            moviethis(movie);
         }
 
 

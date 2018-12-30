@@ -29,7 +29,11 @@ npm install dotenv
 npm install moment
   
 npm install --save node-spotify-api
+<p>
+![Spotify](./images/picture.PNG)
+</p>
 
-
-![Spotify](https://github.com/Divyagk/HW-liri-node-app/blob/master/images/picture.PNG)
+![Spotify](./images/picture.PNG)
 ![Spotify](./images/picture1.PNG)
+![Spotify](./images/picture2.PNG)
+![Spotify](./images/picture3.PNG)

@@ -51,6 +51,7 @@ function moviethis(movie) {
 
     if (process.argv.length === 3 && process.argv[2] != "do-what-it-says") {
         nomoviein();
+        return;
     }
     else if (process.argv.length > 3) {
         // Loop through all the words in the node argument
@@ -151,7 +152,7 @@ function concert(event) {
             }
         })
         .catch(function (error) {
-            console.log(error + '\n Please provide a artist name');
+            console.log(error + '\n Please provide a artist or band name');
 
         })
     
@@ -171,11 +172,8 @@ function spotify(song) {
     // empty variable to hold songname.
     var songname = "";
 
-    if (process.argv.length === 3 && process.argv[2] != "do-what-it-says") {
-        nosongnamein();
-    }
 
-    else if (process.argv.length > 3) {
+    if (process.argv.length > 3) {
 
 
         // Loop through all the words in the node argument
@@ -200,6 +198,10 @@ function spotify(song) {
 
         var songname = song;
     }
+    else if (process.argv.length === 3 && process.argv[2] != "do-what-it-says") {
+        nosongnamein();
+        return;
+    }
     spotify
         .search({ type: 'track', query: songname, limit: 20 })
         .then(function (response) {
@@ -216,6 +218,9 @@ function spotify(song) {
         .catch(function (err) {
             console.log(err);
         });
+
+        
+    
 
 
 
